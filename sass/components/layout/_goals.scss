@@ -1,6 +1,11 @@
 #goals {
   height: auto;
 
+  .goals-desc {
+    position: relative;
+    z-index: 1;
+    color: $white;
+  }
 
   [class*='uk-column-'] {
     column-gap: 0;
@@ -48,23 +53,6 @@
 
     @media screen and (max-width: 1200px) {
       padding-top: 40px;
-    }
-
-    .goals-desc {
-      font-size: 20px;
-      font-family: 'Book';
-      line-height: 42px;
-      text-align: right;
-
-      @media screen and (max-width: 1146px) {
-        font-size: 20px;
-        line-height: 34px;
-      }
-
-      @media screen and (max-width: 991px) {
-        font-size: 16px;
-        line-height: 28px;
-      }
     }
   }
 }

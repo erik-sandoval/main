@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {fetchEvents, controller} from '../utils/meetupApiUtil';
+import {fetchEvents} from '../utils/meetupApiUtil';
 import {calcStartTime, calcEndTime} from '../utils/convertTimeUtil';
 import {splitMonth, splitDay} from '../utils/splitDateUtil';
 
@@ -27,7 +27,7 @@ function SingleEvent() {
       setEventName(getEventName(name));
       setEventStartTime(calcStartTime(localTime));
       setEventEndTime(
-          calcEndTime(localTime, duration
+          calcEndTime(localTime, duration,
           ));
       setEventMonth(splitMonth(localDate));
       setEventDay(splitDay(localDate));

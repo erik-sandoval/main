@@ -1,5 +1,5 @@
-import Nav from "../global/Nav";
-import HeroEvent from "../SingleEvent";
+import Nav from "./global/Nav";
+import HeroEvent from "./SingleEvent";
 
 function Hero(props) {
   const {video = true, background = false, event = true} = props;
@@ -13,7 +13,7 @@ function Hero(props) {
       {video &&
       <video className="uk-visible@m" autoPlay muted loop id="iesd-video">
         <source
-          src="../../static/video/main/hero-main.mp4"
+          src="/static/video/main/hero-main.mp4"
           type="video/mp4"
         />
       </video>

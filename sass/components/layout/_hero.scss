@@ -1,5 +1,5 @@
 #hero {
-  background-image: url("../static/images/hero/hero-image.jpg");
+  background-image: url("/static/images/hero/hero-image.jpg");
   height: auto;
   min-height: 500px;
   position: relative;
@@ -10,7 +10,11 @@
   }
 
   .uk-overlay-primary {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8) !important;
+  }
+
+  .button {
+    width: 100% !important;
   }
 }
 

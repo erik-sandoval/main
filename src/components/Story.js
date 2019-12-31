@@ -1,10 +1,11 @@
 import {Query} from "react-apollo";
 import gql from "graphql-tag";
-import Button from '../global/Button';
+import Button from './global/Button';
+import Loader from './global/Loader';
 
 export const storiesQuery = gql`
  query Stories {
-  stories {
+  stories (first: 100) {
     nodes {
       details {
         content
@@ -32,7 +33,7 @@ export default function Story() {
     <Query query={storiesQuery} >
       {({loading, error, data}) => {
         if (error) return <aside>Error loading stories!</aside>;
-        if (loading) return <div>Loading</div>;
+        if (loading) return <Loader />;
 
         const stories = data.stories.nodes;
         const social =
@@ -40,8 +41,8 @@ export default function Story() {
 
         return (
           <div id="story-container"
-            className="container-full bg-black" >
-            <div uk-slider="true">
+            className="container-full bg-black uk-margin-medium-top" >
+            <div id="story-slider" uk-slider="true">
               <ul
                 className="uk-slider-items uk-child-width-1-1@l">
                 {stories.map((story, index) => {
@@ -52,14 +53,13 @@ export default function Story() {
                   return (
                     <li key={index}>
                       <div id="story" className="uk-container">
+                        <div className="story-background-overlay uk-overlay-primary uk-position-cover"/>
+                        <div className="story-background" style={{backgroundImage: `url(${image})`}}/>
                         <img className="story-image"
                           src={image}
                         />
-                        <div className="story-content">
+                        <div className="story-content uk-position-relative">
                           <p className="heading">Success Story</p>
-                          <img className="story-image-mobile"
-                            src={image}
-                          />
                           <p className="story-header">
                             <span className="name">{name}</span>
                             <span className="red"> - </span>
@@ -69,7 +69,7 @@ export default function Story() {
                             {social.map((outlet, index) => details[outlet] &&
                           <a key={index} href={details[outlet]}>
                             <span uk-icon={`icon: ${outlet}; ratio: 1`}/>
-                          </a>
+                          </a>,
                             )}
                           </p>
                           <p className="story-text">
@@ -98,6 +98,9 @@ export default function Story() {
                     </li>
                   );
                 })}
+              </ul>
+              <ul
+                className="uk-slider-nav uk-dotnav storydotnav uk-flex-center ">
               </ul>
             </div>
           </div>);

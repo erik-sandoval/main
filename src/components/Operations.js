@@ -1,11 +1,12 @@
 import {Query} from "react-apollo";
 import gql from "graphql-tag";
 
-import MemberList from "../MemberList";
+import MemberList from "./MemberList";
+import Loader from './global/Loader';
 
 export const staffQuery = gql`
-    query Speakers {
-        speakers {
+    query Staff{
+        staff (first: 100) {
             nodes {
                 details {
                     title
@@ -22,19 +23,18 @@ export const staffQuery = gql`
     }
 `;
 
-export default function Speakers() {
+export default function Operations() {
   return (
     <Query query={staffQuery} >
       {({loading, error, data}) => {
-        if (error) return <aside>Error loading speakers!</aside>;
-        if (loading) return <div>Loading</div>;
+        if (error) return <aside>Error loading staff!</aside>;
+        if (loading) return <Loader />;
 
         return (
-          <div id="speakers">
+          <div id="operations" className="uk-margin-medium-bottom">
             <MemberList
-              label="Speakers"
-              warning={true}
-              members={data.speakers.nodes.sort((a, b) =>
+              label="Operations"
+              members={data.staff.nodes.sort((a, b) =>
                 a.order.position - b.order.position).map((member) => {
                 return {
                   name: member.details.name,

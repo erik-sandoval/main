@@ -28,7 +28,7 @@ function MemberList(props) {
                     <img uk-image="true" src={
                       image ?
                         image :
-                        "../../static/images/desktop/placeholder.jpg"
+                        "/static/images/desktop/placeholder.jpg"
                     } alt={name} />
                   </div>
 
@@ -40,10 +40,8 @@ function MemberList(props) {
               </li>
               ))}
           </ul>
-          {warning && <p className="uk-text-center">
-            You can drag images left and right to see more.
-          </p>
-          }
+          <ul className="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+          {warning}
         </div>
       </div>
     </div>
